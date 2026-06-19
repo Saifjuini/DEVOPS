@@ -12,14 +12,23 @@ pipeline {
         }
         stage('BUILD') {
             steps {
-                sh 'mvn clean install'
+                sh 'mvn clean install -DskipTests'
+            }
+        }
+        stage('TEST') {
+            steps {
+                sh 'mvn test'
+            }
+            post {
+                always {
+                    junit '**/target/surefire-reports/*.xml'
+                }
             }
         }
         stage('MVN SONARQUBE') {
             steps {
                 withSonarQubeEnv('sonarqube') {
                     sh 'mvn sonar:sonar -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml'
-
                 }
             }
         }
