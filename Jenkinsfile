@@ -24,16 +24,18 @@ pipeline {
                 sh 'mvn clean install -DskipTests'
             }
         }
+       
         stage('TEST') {
             steps {
                 sh 'mvn test'
             }
             post {
-                always {
+                always {e
                     junit '**/target/surefire-reports/*.xml'
                 }
             }
         }
+
         stage('MVN SONARQUBE') {
             steps {
                 withSonarQubeEnv('sonarqube') {
@@ -64,8 +66,8 @@ pipeline {
                 sh 'kubectl apply -f k8s/sonarqube-deployment.yaml'
                 sh "sed -i 's|image: saifjuini/student-management:.*|image: ${DOCKER_IMAGE}:${DOCKER_TAG}|g' k8s/spring-deployment.yaml"
                 sh 'kubectl apply -f k8s/spring-deployment.yaml'
-                sh 'kubectl rollout status deployment/student-management -n devops --timeout=300s'
                 sh 'kubectl rollout status deployment/mysql -n devops --timeout=300s'
+                sh 'kubectl rollout status deployment/student-management -n devops --timeout=600s'
             }
         }
     }
