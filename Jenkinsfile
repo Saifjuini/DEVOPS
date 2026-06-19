@@ -12,7 +12,7 @@ pipeline {
         }
         stage('BUILD') {
             steps {
-                sh 'mvn clean install'
+                sh 'mvn clean package'
             }
         }
     }
