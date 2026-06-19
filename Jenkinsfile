@@ -8,6 +8,11 @@ pipeline {
         DOCKER_TAG = "v${BUILD_NUMBER}"
     }
     stages {
+        stage('Clean Workspace') {
+            steps {
+                cleanWs()
+            }
+        }
         stage('GIT') {
             steps {
                 git branch: 'main',
