@@ -1,4 +1,5 @@
 package tn.esprit.studentmanagement;
+import java.time.Month;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -36,7 +37,7 @@ class StudentServiceTest {
         student.setLastName("Juini");
         student.setEmail("saif@esprit.tn");
         student.setPhone("12345678");
-        student.setDateOfBirth(LocalDate.of(2000, 1, 1));
+        student.setDateOfBirth(LocalDate.of(2000, Month.JANUARY, 1));
         student.setAddress("Tunis");
     }
 

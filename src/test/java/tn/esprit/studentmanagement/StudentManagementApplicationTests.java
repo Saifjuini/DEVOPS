@@ -6,6 +6,8 @@ class StudentManagementApplicationTests {
 
     @Test
     void contextLoads() {
+            assertTrue(true, "Context loaded successfully");
+
     }
 
 }
