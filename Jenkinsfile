@@ -30,7 +30,7 @@ pipeline {
                 sh 'mvn test'
             }
             post {
-                always {e
+                always {
                     junit '**/target/surefire-reports/*.xml'
                 }
             }

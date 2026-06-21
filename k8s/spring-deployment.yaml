@@ -16,6 +16,7 @@ spec:
       containers:
         - name: student-management
           image: saifjuini/student-management:latest
+          imagePullPolicy: Never
           ports:
             - containerPort: 8089
           env:

@@ -15,7 +15,8 @@ spec:
     spec:
       containers:
         - name: sonarqube
-          image: sonarqube
+          image: sonarqube:latest
+          imagePullPolicy: Never
           ports:
             - containerPort: 9000
           env:
