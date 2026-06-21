@@ -62,6 +62,7 @@ pipeline {
         }
         stage('Deploy to Kubernetes') {
             steps {
+                sh 'eval $(minikube docker-env) && docker pull ${DOCKER_IMAGE}:${DOCKER_TAG} && eval $(minikube docker-env --unset) || true'
                 sh 'kubectl apply -f k8s/mysql-deployment.yaml'
                 sh 'kubectl apply -f k8s/sonarqube-deployment.yaml'
                 sh "sed -i 's|image: saifjuini/student-management:.*|image: ${DOCKER_IMAGE}:${DOCKER_TAG}|g' k8s/spring-deployment.yaml"
